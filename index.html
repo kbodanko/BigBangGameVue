@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RockPaperScissorsLizardSpock</title>
+    <link rel="stylesheet" href="css/RockPaperScissorsLizardSpock.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://fonts.cdnfonts.com/css/3dumb" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/wired-elements/lib/wired-elements-iife.js"></script> -->
+    <!-- <script type="module" src="https://unpkg.com/wired-elements?module"></script> -->
+</head>
+<div class="game">
+    <div class="game_filter">
+        <header-game class="header_component"></header-game>
+        <rules-game class="rules_component"></rules-game>
+        <play-game></play-game>
+
+
+
+    </div>
+</div>
+
+<script>
+    // import { WiredButton, WiredInput } from "wired-elements"
+    Vue.component('play-game', {
+        data: function () {
+            return {
+                play: 'let\'s play!',
+                drawActive: true,
+                icons: [
+                    {
+                        name: 'rock',
+                        id: 1,
+                        src: 'img/rock.jpeg'
+                    },
+                    {
+                        name: 'paper',
+                        id: 2,
+                        src: 'img/paper.jpeg'
+                    },
+                    {
+                        name: 'scissors',
+                        id: 3,
+                        src: 'img/scissors.jpeg'
+                    },
+                    {
+                        name: 'lizard',
+                        id: 4,
+                        src: 'img/lizard.jpeg'
+                    },
+                    {
+                        name: 'spock',
+                        id: 5,
+                        src: 'img/spock.jpeg'
+                    },
+                ],
+                interval: '',
+                iconList: ['rock', 'paper', 'scissors', 'lizard', 'spock'],
+                choiceId: '_____',
+                drawnIcon: '',
+                sheldonChoice: '______',
+                yourCounter: 0,
+                sheldonCounter: 0,
+                choose: '',
+                playIsNotVisible: true,
+                chooseIsVisible: true,
+                // drawnIconChoiceId: drawnIcon + choiceId
+            }
+        },
+        computed: {
+
+        },
+        methods: {
+            choosen: function (event) {
+                let choice = event.target;
+                this.choiceId = choice.id;
+                playIsNotVisible = false
+            },
+            drawInterval: function () {
+                interval = setInterval(this.draw, 50);
+            },
+            stop: function () {
+                if (playIsNotVisible) {
+                    this.choosen(event);
+                    this.whoWin();
+                }
+                this.showExplain();
+                clearInterval(interval);
+                this.$refs.summ.style.zIndex = '1'
+                this.$refs.chooseWraper.style.display = "none";
+                this.$refs.scores.style.display = "block";
+                // this.$refs.playButton.style.display = 'flex';
+                this.$refs.playButton.style.visibility = 'visible';
+                this.$refs.playButton.style.zIndex = '1';
+                this.$refs.playButton.style.display = 'flex'
+                this.$refs.wraper.style.justifyContent = "space-around";
+                this.$refs.summ.style.display = 'block';
+                this.play = 'play again';
+            },
+            draw: function () {
+                this.drawnIcon = this.iconList[Math.round(Math.random() * 4)];
+
+                this.$refs.sheldonPlay.setAttribute('src', 'img/' + this.drawnIcon + '.jpeg');
+            },
+            playDraw: function () {
+                playIsNotVisible = true;
+                this.$refs.explain.style.visibility = "hidden";
+                // this.$refs.playButton.style.visibility = 'visible';
+                this.$refs.summ.style.zIndex = '-2';
+                this.choose = 'choose one:';
+                if (this.chooseIsVisible) {
+                    this.$refs.chooseWraper.style.display = "flex";
+                    this.$refs.playButton.style.display = 'none'
+                }
+                this.chooseIsVisible = false;
+                // console.log(this.chooseIsVisible);
+                this.sheldonChoice = '_____';
+                this.drawInterval();
+                this.drawnIcon = '';
+                this.choiceId = '_____';
+                this.$refs.playButton.style.zIndex = '-5';
+            },
+            sayChoose: function () {
+                this.$refs.chooseWraper.style.display = "flex";
+            },
+            showExplain: function () {
+                console.log('explain');
+                let drawnIconChoiceId = this.drawnIcon + this.choiceId;
+                switch (true) {
+                    case (this.drawnIcon === this.choiceId): this.$refs.explain.textContent = '"' + this.choiceId + ' and ' + this.drawnIcon + '"';
+                        break;
+                    case (drawnIconChoiceId === 'paperscissors') || (drawnIconChoiceId === 'scissorspaper'):
+                        this.$refs.explain.textContent = '"scissors cuts paper"';
+                        break;
+                    case (drawnIconChoiceId === 'lizardspock') || (drawnIconChoiceId === 'spocklizard'):
+                        this.$refs.explain.textContent = '"lizard poisons Spock"';
+                        break;
+                    case (drawnIconChoiceId === 'paperrock') || (drawnIconChoiceId === 'rockpaper'):
+                        this.$refs.explain.textContent = '"paper covers rock"';
+                        break;
+                    case (drawnIconChoiceId === 'rockscissors') || (drawnIconChoiceId === 'scissorsrock'):
+                        this.$refs.explain.textContent = '"rock crushes scissors"';
+                        break;
+                    case (drawnIconChoiceId === 'rocklizard') || (drawnIconChoiceId === 'lizardrock'):
+                        this.$refs.explain.textContent = '"rock crushes lizard"';
+                        break;
+                    case (drawnIconChoiceId === 'rockspock') || (drawnIconChoiceId === 'spockrock'):
+                        this.$refs.explain.textContent = '"Spock vaporizes rock"';
+                        break;
+                    case (drawnIconChoiceId === 'spockscissors') || (drawnIconChoiceId === 'scissorsspock'):
+                        this.$refs.explain.textContent = '"Spock smashes scissors"';
+                        break;
+                    case (drawnIconChoiceId === 'lizardscissors') || (drawnIconChoiceId === 'scissorslizard'):
+                        this.$refs.explain.textContent = '"scissors decapitates lizard"';
+                        break;
+                    case (drawnIconChoiceId === 'lizardpaper') || (drawnIconChoiceId === 'paperlizard'):
+                        this.$refs.explain.textContent = '"lizard eats paper"';
+                        break;
+                    case (drawnIconChoiceId === 'paperspock') || (drawnIconChoiceId === 'spockpaper'):
+                        this.$refs.explain.textContent = '"paper disproves Spock"';
+                        break;
+
+                }
+            },
+            whoWin: function () {
+                this.$refs.chooseWraper.style.display = "none";
+                this.sheldonChoice = this.drawnIcon;
+                this.$refs.explain.style.visibility = "visible";
+                if (this.drawnIcon === this.choiceId) {
+                    // this.$refs.explain.textContent = this.drawnIcon + ' and ' + this.choiceId;
+                    this.$refs.win.textContent = 'Draw';
+                } else if ((this.choiceId === 'paper' & this.drawnIcon === 'scissors') || (this.choiceId === 'rock' & this.drawnIcon === 'paper') || (this.choiceId === 'scissors' & this.drawnIcon === 'rock') || (this.choiceId === 'Spock' & this.drawnIcon === 'lizard') || (this.choiceId === 'lizard' & this.drawnIcon === 'scissors') || (this.choiceId === 'rock' & this.drawnIcon === 'lizard') || (this.choiceId === 'scissors' & this.drawnIcon === 'Spock') || (this.choiceId === 'paper' & this.drawnIcon === 'lizard') || (this.choiceId === 'Spock' & this.drawnIcon === 'paper') || (this.choiceId === 'rock' & this.drawnIcon === 'Spock') || (this.choiceId === 'lizard' & this.drawnIcon === 'rock')) {
+                    this.$refs.win.textContent = 'Sheldon won!';
+                    this.sheldonCounter += 1
+                }
+                else {
+                    this.$refs.win.textContent = 'You won!';
+                    this.yourCounter += 1
+                }
+            }
+        },
+        template: `<div>
+            <div class="game_play">
+        <div ref="wraper" class="game_play_flex_wraper">
+            <div ref="chooseWraper" class="choose_wraper">
+            <div class="game_play_choose"><p class="game_play_choose_p">{{choose}}</p></div>
+            </div>
+            <div v-on:click=playDraw ref="playButton" class="game_play_button">
+                <!-- here should be a v-model -->
+                <wired-button elevation='2' ref="play" id="play">{{play}}</wired-button>
+            </div>
+            <!-- here should be a v-model in every element-->
+            <div ref="summ" class="game_play_summ">
+                <div class="game_play_summ_win"><p ref="win">win</p></div>
+                <wired-card id="choices"> 
+                <div class="game_play_summ_choises"> 
+                <div class="game_play_summ_choose_your inner_bg">Your choice: {{choiceId}}</div>
+                <div class="border game_play_summ_border"></div>
+                <div class="game_play_summ_choose_sheldon inner_bg">Sheldon choice: {{sheldonChoice}}</div>
+                </div>
+            </wired-card>
+            </div>
+            <div ref="scores" class="game_play_summ_scores">
+                <div class="scores_wraper_flex">
+                <wired-card id="scores">
+                    <div class="scores_wraper">
+                <div class="game_play_summ_scores_score inner_bg">
+                    <div class="game_play_summ_scores_score_name">You</div>
+                    <div id="your_counter">{{yourCounter}}</div>
+                </div>
+                <div class="border game_play_summ_scores_border"></div>
+                <div class="game_play_summ_scores_score inner_bg">
+                    <div class="game_play_summ_scores_score_name">Sheldon</div>
+                    <div id="sheldon_counter">{{sheldonCounter}}</div>
+                </div>
+                </div>
+                </wired-card>
+                </div>
+            <div class="game_play_explain">
+            <!-- here should be a v-model -->
+            <p ref="explain"></p>
+        </div>            
+        </div>
+        
+    </div>
+    <div class="game_draw">
+        <wired-card elevation='3' id="images">
+            <div class="game_draw_icons">
+                <div class="game_draw_icons_icon active animate__animated animate__bounceInDown"" v-for="icon in icons" v-bind:key='icon.id' v-on:click=stop :id="icon.name">
+                    <img :src=icon.src class="game_draw_icons_icon_img icons_hover" :id="icon.name">
+                </div>
+                <div class="border"></div>
+                <div class="game_draw_icons_icon">
+                    <img ref="sheldonPlay" src="img/sheldon_play.jpg" class="game_draw_icons_icon_img" id="draw">
+                </div>
+            </div>
+        </wired-card>
+    </div>
+    </div>
+    </div>`,
+
+    })
+
+    Vue.component('header-game', {
+        template: `<div class="game_header">
+            <div class="game_header_top_rules">
+                <wired-button elevation='2' v-on:click=showRules>Rules</wired-button>
+                </div>
+                <div class="game_header_top">
+                    <h1>Rock, Paper, Scissors, Lizard, Spock</h1>
+                    </div>
+                    <wired-divider elevation='2'></wired-divider>
+                    </div>`
+        ,
+        methods: {
+            showRules: function () {
+                let gameRules = document.querySelector('.game_rules_wraper');
+                gameRules.style.display = 'flex';
+                let gameHeader = document.querySelector('.header_component');
+                gameHeader.style.display = 'none'
+            }
+        }
+    });
+    Vue.component('rules-game', {
+        template: `        <div class="game_rules_wraper">
+            <div class="game_rules">
+                <div class="rules">
+                    <wired-card id="sheldon">
+                        <div class="game_rules_card">
+                            <wired-image src="img/sheldon.jpg" id="sheldon_photo">
+                            </wired-image>
+                            <div id="content">
+                                <div class="game_rules_card_content">"It's simply: scissors cuts paper, paper covers
+                                    rock,
+                                    rock crushes lizard, lizard poisons Spock, Spock smashes scissors, scissors
+                                    decapitates
+                                    lizard, lizard
+                                    eats
+                                    paper, paper disproves Spock, Spock vaporizes rock, and as it always has, rock
+                                    crushes
+                                    scissors."</div>
+                                <div class="thanks_button">
+                                    <wired-button elevation='3' v-on:click=hideRules>Thanks, Sheldon!</wired-button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </wired-card>
+                </div>
+
+            </div>
+        </div>`,
+        methods: {
+            hideRules: function () {
+                let gameRules = document.querySelector('.game_rules_wraper');
+                gameRules.style.display = 'none';
+                let gameHeader = document.querySelector('.header_component');
+                gameHeader.style.display = 'block'
+            }
+        }
+    });
+    let game = new Vue({
+        el: '.game'
+    })
+</script>
+<script type="module" src="https://unpkg.com/wired-elements?module"></script>
+
+
+<body>
+
+</body>
+
+</html>
