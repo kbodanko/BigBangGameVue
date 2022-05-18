@@ -1,0 +1,277 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(Science-Background.jpg);
+    height: 100%;
+    width: 100%;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: white;
+    }
+p{
+    margin: 0;
+}
+h1{
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-family: '3Dumb', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+}
+wired-card{
+    font-family: 'Gloria Hallelujah', cursive;
+    color: white;
+}
+wired-button{
+    border-top-left-radius: 255px 55px;
+    border-top-right-radius: 55px 225px;
+    border-bottom-right-radius: 225px 55px;
+    border-bottom-left-radius:55px 255px;
+    color: white;
+    margin: 20px;
+    background-image: linear-gradient(to left,rgb(255, 174, 0),#b900b9);
+    opacity: .9;
+}
+wired-button:hover{
+    transform: scale(.9);
+    opacity: 1;
+}
+wired-divider{
+    margin-top: 3vh;
+}
+.game_filter{
+    background-color: rgba(0, 0, 0, 0.93);
+    background-size: cover;
+    padding: 0 7vh;
+    height: 120vh;
+}
+.game_header_top{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.game_header_top_rules{
+    display: flex;
+    justify-content: end;
+}
+.game_rules_wraper{
+    display: none;
+    /* display: flex; */
+    justify-content: center;
+}
+.game_rules{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+.rules{
+    margin: 5vh 5%;
+    font-size: 1rem;
+}
+#sheldon{
+    padding: 5vh 0;}
+.game_rules_card{
+    display: flex;
+    justify-content: space-around;
+}
+.game_rules_card_content{
+    padding: 2vh;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 45%;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius:15px 255px;
+    background-color: rgb(255, 255, 255,.15);
+}
+.thanks_button{
+    justify-self: end;
+    display: flex;
+    justify-content: center;
+}
+/* #play_again{
+    visibility: hidden;
+} */
+#choices{
+    display: flex;
+    align-items: center;
+    font-variant: small-caps;
+}
+.game_play_button{
+    display: flex;
+    align-items: center;
+}
+
+.game_play_flex_wraper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game_play_summ{
+    justify-content: space-around;
+}
+.game_play_summ_scores{
+    display: flex;
+    height: 100%;
+}
+.scores_wraper{
+    display: flex;
+}
+.scores_wraper_flex{
+    display: flex;
+    justify-content: center;
+}
+#your_counter, 
+#sheldon_counter{
+    display: flex;
+    justify-content: center;
+}
+.game_play_summ,
+.game_play_summ_scores,
+.choose_wraper{
+    display: none;
+    /* visibility: hidden; */
+    margin: 20px;
+}
+.game_play_summ_win{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.game_play_summ_choises{
+    display: flex;
+    width: 100%;
+}
+.game_play_choose{
+    display: flex;
+    align-items: center;
+}
+.game_play_choose_p{
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius:15px 255px;
+    padding: .7rem; 
+    font-variant: small-caps;  
+    font-size: 1.3rem;
+}
+.game_play_explain{
+    text-align: center;
+}
+#images{
+    width: 100%;
+    color: black;
+}
+.game_draw_icons{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5vh;
+    padding-bottom: 3vh;
+  } 
+.game_draw_icons_icon_img{
+    border-radius: 50%;
+    width: 130px;
+}
+.icons_hover:hover{
+    cursor: pointer;
+    box-shadow:  0 0 12vh rgb(255, 255, 255,.7);
+}
+.active:active{
+    transform: scale(.9);
+}
+.border{
+    margin: 0 .4rem;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-top-right-radius: 15px 225px;
+    border-bottom-left-radius:15px 255px;
+}
+.inner_bg{
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius:15px 255px;
+    background-color: rgb(255, 255, 255,.15); 
+    padding: .7rem;
+    white-space: nowrap;
+    width: 50;
+}
+@media(max-width:1300px){
+    wired-button{
+        margin: 8px;
+    }
+    #sheldon{
+        margin: 5vh 7%;
+    }
+    #sheldon_photo{
+        margin-left: 5vh;
+    }
+    .game_rules{
+        width: 90%;
+    }
+    .rules{
+        margin: 5vh 5%;
+        font-size: .85rem;
+    }
+    .game_rules_card_img{
+        display: flex;
+        justify-content: center;
+        margin: 0 5vh;
+    }
+    #content{
+        margin:0 5%;
+        width: 90%;
+    }
+}
+@media(max-width:1000px){
+    #sheldon_photo{
+    }
+}
+@media(max-width:900px){
+    h1{
+        font-size: 1.5rem;
+    }
+    .game_rules{
+        width:90%
+    }
+    .rules{
+        margin: 5vh 0;
+    }
+    #sheldon{
+        margin: 0;
+    }
+    #sheldon_photo{}
+}
+@media(max-width:700px){
+    .game_filter{
+        padding: 0 2vh;
+    }
+    h1{
+        font-size: 1 .2rem;
+    }
+    .game_rules{
+        width:100%
+    }
+    .game_rules_card{
+        flex-direction: column;
+    }
+    #sheldon_photo{
+        margin: auto;
+        width: 80%;
+    }
+    #content{
+        margin: 3vh;
+        width: 90%;
+    }
+    .game_rules_card_content{
+        width: 250px;
+    }
+    .game_rules_card_img{
+        height: 40%;
+    }
+}

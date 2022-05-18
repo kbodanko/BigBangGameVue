@@ -1,0 +1,4 @@
+usuwnie produktów podsumowni
+animacja otwarcia menu/modala->>js
+co e djęciami (do kadego modelu djęcie cy modele be?)
+nav a modale ajmujace cała ser/wys
