@@ -179,7 +179,7 @@ wired-divider{
 }
 .icons_hover:hover{
     cursor: pointer;
-    box-shadow:  0 0 12vh rgb(255, 255, 255,.7);
+    transform: scale(.9);
 }
 .active:active{
     transform: scale(.9);
