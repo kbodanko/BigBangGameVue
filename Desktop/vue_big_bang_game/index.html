@@ -10,22 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://fonts.cdnfonts.com/css/3dumb" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- <script src="https://unpkg.com/wired-elements/lib/wired-elements-iife.js"></script> -->
-    <!-- <script type="module" src="https://unpkg.com/wired-elements?module"></script> -->
 </head>
 <div class="game">
     <div class="game_filter">
         <header-game class="header_component"></header-game>
         <rules-game class="rules_component"></rules-game>
         <play-game></play-game>
-
-
-
     </div>
 </div>
 
 <script>
-    // import { WiredButton, WiredInput } from "wired-elements"
     Vue.component('play-game', {
         data: function () {
             return {
