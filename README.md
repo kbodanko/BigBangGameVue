@@ -15,3 +15,4 @@
 - Use Vue js
 - Logical thinking while creating the rules
 - Functions and conditional statements
+- Original and interesting design
