@@ -4,6 +4,7 @@
 ![game screen](https://github.com/kbodanko/BigBangGameVue/blob/master/Screenshot%202022-05-18%20at%2012-18-00%20BigBangGame%201.png)
 ![game screen](https://github.com/kbodanko/BigBangGameVue/blob/master/image%201.png)
 ![game screen](https://github.com/kbodanko/BigBangGameVue/blob/master/image%202.png)
+![game screen](https://github.com/kbodanko/BigBangGameVue/blob/master/The-Big-Bang-Theory-Sheldon-Spock%201.png)
 
 **The heart of the project:** Vue js
 
